@@ -1,11 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, Component } from 'react'
 // import { makeStyles } from '@material-ui/core/styles';
-import { Button, ButtonGroup, Grid, Paper, Typography, Slider, Input } from '@material-ui/core';
-import Card from './components/card'
-import Deck from './components/deck'
-import Player from './components/player'
+import Game from './components/game'
+import RegistrationForm from './components/registrationForm'
+import LoginForm from './components/loginForm'
 
 
 // const useStyles = makeStyles((theme) => ({
@@ -22,29 +21,9 @@ import Player from './components/player'
 function App() {
   return (
     <div className="App">
-     <Grid container>
-      <Grid item>
-
-          <Button>
-            Klikken!!!
-          </Button>
-          <Player></Player>
-      </Grid>
-      <Grid item>
-        <Deck></Deck>
-        <Deck></Deck>
-        <Deck></Deck>
-      </Grid>
-      <Grid item>
-
-        <Button>
-          Klikken!!!
-        </Button>
-        <Player></Player>
-      </Grid>
-            
-     </Grid>
-
+      <RegistrationForm></RegistrationForm>
+      <LoginForm></LoginForm>
+      <Game></Game>
     </div>
   );
 }

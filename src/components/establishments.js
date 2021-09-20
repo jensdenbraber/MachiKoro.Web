@@ -1,10 +1,10 @@
 import Card from './card'
 
-export default function Deck() {
+export default function Establishments() {
 
     return (<div>
         <Card>
-            name
+            Establishment name
         </Card>
     </div>);
 }
