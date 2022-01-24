@@ -2,7 +2,7 @@ import GoldCoin from './goldCoin'
 import Establishments from './establishments'
 import Landmarks from './landmarks'
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles2 = makeStyles((theme) => ({
     root: {
@@ -10,9 +10,9 @@ const useStyles2 = makeStyles((theme) => ({
         height: '100%'
     },
     paper: {
-        padding: theme.spacing(2),
+        // padding: theme.spacing(2),
         textAlign: 'center',
-        color: theme.palette.text.secondary,
+        // color: theme.palette.text.secondary,
     },
 }));
 
@@ -20,9 +20,9 @@ export default function PlayerInventory() {
 
     const classes = useStyles2();
 
-    return (<div  justifyContent="center">
+    return (<div >
         <GoldCoin></GoldCoin>
-        <Landmarks justifyContent="center">Landmarks</Landmarks>
-        <Establishments justifyContent="center" >Establishments</Establishments>
+        <Landmarks >Landmarks</Landmarks>
+        <Establishments  >Establishments</Establishments>
     </div>);
 }

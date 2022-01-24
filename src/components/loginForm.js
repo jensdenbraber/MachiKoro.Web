@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, ButtonGroup, Grid, TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { Button, ButtonGroup, Grid, TextField } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { ArrowRight } from '@mui/icons-material';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
+      // margin: theme.spacing(1),
       width: '25ch',
     },
   },
@@ -25,25 +25,40 @@ export default function LoginForm() {
     console.log('{userName: ' + username + ', password: ' + password + '}')
 
     var debug = true
-    // var room = RoomModel
-    // var roomJson = JSON.stringify(room)
 
     var host = ""
     if (debug)
-      host = "http://localhost:3000"
+      host = "https://localhost:5001"
 
-    var url = "/api/v1/login"
+    var url = "/api/v1/identity/login"
     var fetchUrl = host + url
 
     fetch(fetchUrl, {
       method: 'POST',
+      mode: "cors",
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: '{userName: ' + username + ', password: ' + password + '}'
+      body: JSON.stringify({ userName: username, password: password })
     })
+      .then(response => { return response.json(); })
+      .then(responseData => {
+        console.log(responseData);
 
+        // check for error response
+        if (!responseData.ok) {
+          // get error message from body or default to response statusText
+          console.log("ERROR login!!")
+          const error = (responseData && responseData.message) || responseData.statusText;
+          return Promise.reject(error);
+        }
+
+        localStorage.setItem('userData', JSON.stringify(responseData));
+        return responseData;
+      })
+      .then({//TODO go to lobby
+      })
   }
 
   const classes = useStyles();
@@ -74,13 +89,13 @@ export default function LoginForm() {
           <Button onClick={register} variant="contained"
             color="primary"
             className={classes.button}
-            startIcon={<ArrowRightIcon />}>
+            startIcon={<ArrowRight />}>
             Register
           </Button>
           <Button onClick={login} variant="contained"
             color="primary"
             className={classes.button}
-            startIcon={<ArrowRightIcon />}>
+            startIcon={<ArrowRight />}>
             Login
           </Button>
         </ButtonGroup>

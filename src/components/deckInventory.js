@@ -1,8 +1,8 @@
 import Card from './card'
 import Deck from './deck'
 
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { makeStyles } from '@mui/styles';
+import { Grid } from '@mui/material';
 
 const useStyles1 = makeStyles((theme) => ({
     root: {
@@ -10,9 +10,9 @@ const useStyles1 = makeStyles((theme) => ({
         height: '100%'
     },
     paper: {
-        padding: theme.spacing(2),
+        // padding: theme.spacing(2),
         textAlign: 'center',
-        color: theme.palette.text.secondary,
+        // color: theme.palette.text.secondary,
     },
 }));
 
@@ -27,7 +27,7 @@ export default function DeckInventory() {
                     Deck 1
                 </Deck>
             </Grid>
-            <Grid container xs={12}>
+            <Grid item xs={12}>
                 <Card xs={6}>1</Card>
                 <Card xs={6}>2</Card>
                 <Card xs={6}>3</Card>
@@ -40,7 +40,7 @@ export default function DeckInventory() {
                     Deck 2
                 </Deck>
             </Grid>
-            <Grid container xs={12}>
+            <Grid item xs={12}>
                 <Card xs={6}>1</Card>
                 <Card xs={6}>2</Card>
                 <Card xs={6}>3</Card>
@@ -53,7 +53,7 @@ export default function DeckInventory() {
                     Deck 3
                 </Deck>
             </Grid>
-            <Grid container xs={12}>
+            <Grid item xs={12}>
                 <Card xs={6}>1</Card>
                 <Card xs={6}>2</Card>
                 <Card xs={6}>3</Card>

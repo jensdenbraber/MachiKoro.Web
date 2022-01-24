@@ -1,6 +1,6 @@
 import Card from './card'
 
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 
 export default function Landmarks() {
 
