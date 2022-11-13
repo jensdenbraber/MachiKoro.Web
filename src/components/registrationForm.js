@@ -41,13 +41,11 @@ export default function RegistrationForm() {
       },
       body: JSON.stringify({ userName: username, password: password })
     })
-
-      .then(response => { return response.json(); })
-      .then(responseData => {
-        console.log(responseData);
+      .then(async response => {
+        const responseData = await response.json();
 
         // check for error response
-        if (!responseData.ok) {
+        if (!response.ok) {
           // get error message from body or default to response statusText
           console.log("ERROR registration!!")
           const error = (responseData && responseData.message) || responseData.statusText;

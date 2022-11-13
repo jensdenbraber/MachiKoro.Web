@@ -16,13 +16,13 @@ const useStyles2 = makeStyles((theme) => ({
     },
 }));
 
-export default function PlayerInventory() {
+export default function PlayerInventory(inventory) {
 
     const classes = useStyles2();
 
     return (<div >
-        <GoldCoin></GoldCoin>
-        <Landmarks >Landmarks</Landmarks>
-        <Establishments  >Establishments</Establishments>
+        <GoldCoin coins={inventory.coins}></GoldCoin>
+        <Landmarks landmarks={inventory.landmarks}>Landmarks</Landmarks>
+        <Establishments establishments={inventory.establishments}>Establishments</Establishments>
     </div>);
 }

@@ -1,10 +1,14 @@
 import Card from './card'
 
-export default function Establishments() {
+import { Grid } from '@mui/material';
 
-    return (<div>
-        <Card>
-            Establishment name
-        </Card>
-    </div>);
+export default function Establishments({ establishments }) {
+
+    return (<Grid container>
+        establishments
+        {/* {establishments.forEach((establishment) => (
+            <Card cardData={establishment} >
+            </Card>
+        ))} */}
+    </Grid>);
 }

@@ -5,6 +5,7 @@ import ActionBar from './actionBar/diceRoll'
 import DeckInventory from './deckInventory'
 import GameInfo from './gameInfo'
 import Player from './player'
+import TurnState from './turnState'
 
 import { Button, Grid, Paper } from '@mui/material';
 
@@ -22,9 +23,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Game() {
 
-  const [dice, setDice] = useState([]);
-  const [userData, setUserData] = useState([]);
-  const [connection, setConnection] = useState([]);
+  const [dice, setDice] = useState([])
+  const [userData, setUserData] = useState([])
+  const [game, setGame] = useState([])
+  const [deckInventory, setDeckInventory] = useState([])
+  const [connection, setConnection] = useState([])
 
   useEffect(() => {
     const connection = new HubConnectionBuilder()
@@ -68,7 +71,7 @@ export default function Game() {
   async function setChoice() {
     var choice = JSON.stringify({
       "phase": "construction",
-      "type": "buy",
+      "type": "ConstructEstablishment",
       "choice": {
         "cardId": "4082C11C-58C5-4EEF-BAB5-1FE6DE1E7120"
       }
@@ -77,7 +80,15 @@ export default function Game() {
     console.log('setChoice()')
 
     try {
-      await connection.invoke("Choice", choice);
+      await connection.invoke("Choice", "9ED62043-A403-4466-9168-5DEE2DB3088D", choice);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function throwDice() {
+    try {
+      await connection.invoke("RollDice", "9ED62043-A403-4466-9168-5DEE2DB3088D");
     } catch (err) {
       console.error(err);
     }
@@ -91,26 +102,32 @@ export default function Game() {
       </Grid>
       <Grid item xs={6}>
         <Paper className={classes.paper}>
-          <Player>Player 1</Player>
+          <Player name={game}></Player>
           <Button onClick={setChoice} variant="contained"
             color="primary"
             className={classes.button}>
             Choice
           </Button>
+          <Button onClick={throwDice} variant="contained"
+            color="primary"
+            className={classes.button}>
+            Throw dice
+          </Button>
         </Paper>
       </Grid>
       <Grid item xs={3}></Grid>
       <Grid item xs={3}>
-        <Paper className={classes.paper}>
+        {/* <Paper className={classes.paper}>
           <Player>Player 2</Player>
-        </Paper>
+        </Paper> */}
       </Grid>
       <Grid item xs={6}>
         <Paper className={classes.paper}>
+          <TurnState></TurnState>
           <GameInfo>
           </GameInfo>
           Dice: {dice}
-          <DeckInventory>
+          <DeckInventory deckInventory={deckInventory}>
             Deck inventory
           </DeckInventory>
           <ActionBar>
@@ -118,15 +135,15 @@ export default function Game() {
         </Paper>
       </Grid>
       <Grid item xs={3}>
-        <Paper className={classes.paper}>
+        {/* <Paper className={classes.paper}>
           <Player>Player 3</Player>
-        </Paper>
+        </Paper> */}
       </Grid>
       <Grid item xs={3}>
       </Grid>
       <Grid item xs={6}>
         <Paper className={classes.paper}>
-          <Player>Player 4</Player>
+          <Player name={game} inventory={game}></Player>
         </Paper>
       </Grid>
       <Grid item xs={3}>

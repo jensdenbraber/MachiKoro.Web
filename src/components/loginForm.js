@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Button, ButtonGroup, Grid, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { ArrowRight } from '@mui/icons-material';
+import { useCookies } from 'react-cookie';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +20,7 @@ export default function LoginForm() {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [cookies, setCookie] = useCookies(['refreshToken']);
 
   function login() {
     console.log("login")
@@ -42,23 +44,27 @@ export default function LoginForm() {
       },
       body: JSON.stringify({ userName: username, password: password })
     })
-      .then(response => { return response.json(); })
-      .then(responseData => {
+      .then(async response => {
+        const responseData = await response.json();
+
         console.log(responseData);
 
         // check for error response
-        if (!responseData.ok) {
+        if (!response.ok) {
           // get error message from body or default to response statusText
           console.log("ERROR login!!")
           const error = (responseData && responseData.message) || responseData.statusText;
           return Promise.reject(error);
         }
 
+        console.log("Login successfully!!")
         localStorage.setItem('userData', JSON.stringify(responseData));
+
         return responseData;
       })
       .then({//TODO go to lobby
       })
+      .catch(err => { console.error(err) })
   }
 
   const classes = useStyles();

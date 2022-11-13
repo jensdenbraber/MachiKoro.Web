@@ -9,13 +9,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function GoldCoin() {
+export default function GoldCoin({ coins }) {
 
   const classes = useStyles();
 
   return (<div className={classes.root}>
     <Avatar className={classes.avatar}>
-      12
+      coins: {coins}
     </Avatar>
   </div>
   );

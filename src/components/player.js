@@ -1,9 +1,9 @@
 import PlayerInventory from './playerInventory'
 
-export default function Player() {
+export default function Player({ name, inventory }) {
 
     return (<div>
-        Player Name
-        <PlayerInventory></PlayerInventory>
+        name: {name}
+        <PlayerInventory inventory={inventory}></PlayerInventory>
     </div>);
 }
