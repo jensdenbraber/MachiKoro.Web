@@ -1,16 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Button, ButtonGroup, Grid, TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import { ArrowRight } from '@mui/icons-material';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      // margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}));
+import { useCookies } from 'react-cookie';
 
 export default function LoginForm() {
   function register() {
@@ -19,6 +10,7 @@ export default function LoginForm() {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [cookies, setCookie] = useCookies(['refreshToken']);
 
   function login() {
     console.log("login")
@@ -42,28 +34,30 @@ export default function LoginForm() {
       },
       body: JSON.stringify({ userName: username, password: password })
     })
-      .then(response => { return response.json(); })
-      .then(responseData => {
+      .then(async response => {
+        const responseData = await response.json();
+
         console.log(responseData);
 
         // check for error response
-        if (!responseData.ok) {
+        if (!response.ok) {
           // get error message from body or default to response statusText
           console.log("ERROR login!!")
           const error = (responseData && responseData.message) || responseData.statusText;
           return Promise.reject(error);
         }
 
+        console.log("Login successfully!!")
         localStorage.setItem('userData', JSON.stringify(responseData));
+
         return responseData;
       })
       .then({//TODO go to lobby
       })
+      .catch(err => { console.error(err) })
   }
 
-  const classes = useStyles();
-
-  return (<form className={classes.root} noValidate autoComplete="off">
+  return (<form noValidate autoComplete="off">
     <div>
       <Grid container>
         <Grid item>
@@ -88,13 +82,11 @@ export default function LoginForm() {
         <ButtonGroup orientation="horizontal" variant="outlined" color="primary">
           <Button onClick={register} variant="contained"
             color="primary"
-            className={classes.button}
             startIcon={<ArrowRight />}>
             Register
           </Button>
           <Button onClick={login} variant="contained"
             color="primary"
-            className={classes.button}
             startIcon={<ArrowRight />}>
             Login
           </Button>

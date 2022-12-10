@@ -2,20 +2,13 @@ import Card from './card'
 
 import { Grid } from '@mui/material';
 
-export default function Landmarks() {
+export default function Landmarks({ landmarks }) {
 
     return (<Grid container>
-        <Card>
-            Landmark name
-        </Card>
-        <Card>
-            Landmark name
-        </Card>
-        <Card>
-            Landmark name
-        </Card>
-        <Card>
-            Landmark name
-        </Card>
+        landmarks
+        {/* {landmarks.forEach((landmark) => (
+            <Card cardData={landmark} >
+            </Card>
+        ))} */}
     </Grid>);
 }

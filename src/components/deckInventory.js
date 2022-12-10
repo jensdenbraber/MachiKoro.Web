@@ -1,26 +1,10 @@
 import Card from './card'
 import Deck from './deck'
-
-import { makeStyles } from '@mui/styles';
 import { Grid } from '@mui/material';
-
-const useStyles1 = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-        height: '100%'
-    },
-    paper: {
-        // padding: theme.spacing(2),
-        textAlign: 'center',
-        // color: theme.palette.text.secondary,
-    },
-}));
 
 export default function DeckInventory() {
 
-    const classes = useStyles1();
-
-    return (<Grid className={classes.root} container spacing={1}>
+    return (<Grid container spacing={1}>
         <Grid item xs={4}>
             <Grid item xs={12}>
                 <Deck>
