@@ -1,16 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Button, ButtonGroup, Grid, TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      // margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}));
 
 export default function RegistrationForm() {
 
@@ -57,9 +46,7 @@ export default function RegistrationForm() {
       })
   }
 
-  const classes = useStyles();
-
-  return (<form className={classes.root} noValidate autoComplete="off">
+  return (<form noValidate autoComplete="off">
     <div>
       <Grid container>
         <Grid item>
@@ -83,7 +70,6 @@ export default function RegistrationForm() {
         <ButtonGroup orientation="horizontal" variant="outlined" color="primary">
           <Button onClick={register} variant="contained"
             color="primary"
-            className={classes.button}
             startIcon={''}>
             Register
           </Button>

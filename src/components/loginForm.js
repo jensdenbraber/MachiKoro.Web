@@ -1,17 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Button, ButtonGroup, Grid, TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import { ArrowRight } from '@mui/icons-material';
 import { useCookies } from 'react-cookie';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      // margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}));
 
 export default function LoginForm() {
   function register() {
@@ -67,9 +57,7 @@ export default function LoginForm() {
       .catch(err => { console.error(err) })
   }
 
-  const classes = useStyles();
-
-  return (<form className={classes.root} noValidate autoComplete="off">
+  return (<form noValidate autoComplete="off">
     <div>
       <Grid container>
         <Grid item>
@@ -94,13 +82,11 @@ export default function LoginForm() {
         <ButtonGroup orientation="horizontal" variant="outlined" color="primary">
           <Button onClick={register} variant="contained"
             color="primary"
-            className={classes.button}
             startIcon={<ArrowRight />}>
             Register
           </Button>
           <Button onClick={login} variant="contained"
             color="primary"
-            className={classes.button}
             startIcon={<ArrowRight />}>
             Login
           </Button>

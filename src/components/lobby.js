@@ -1,16 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Button, ButtonGroup, Grid, TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import { HubConnectionBuilder } from '@microsoft/signalr';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& .MuiTextField-root': {
-            // margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
-}));
 
 export default function Lobby() {
 
@@ -118,22 +108,17 @@ export default function Lobby() {
             }
         })
     }
-
-    const classes = useStyles();
-
-    return (<form className={classes.root} noValidate autoComplete="off">
+    return (<form noValidate autoComplete="off">
         <div>
             <Grid container>
                 <ButtonGroup orientation="horizontal" variant="outlined" color="primary">
                     <Button onClick={createGame} variant="contained"
                         color="primary"
-                        className={classes.button}
                         startIcon={''}>
                         createGame
                     </Button>
                     <Button onClick={joinGame} variant="contained"
                         color="primary"
-                        className={classes.button}
                         startIcon={''}>
                         JoinGame
                     </Button>
@@ -147,7 +132,6 @@ export default function Lobby() {
                     />
                     <Button onClick={startGame} variant="contained"
                         color="primary"
-                        className={classes.button}
                         startIcon={''}>
                         StartGame
                     </Button>

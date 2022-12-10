@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
-import { makeStyles } from '@mui/styles';
 import ActionBar from './actionBar/diceRoll'
 import DeckInventory from './deckInventory'
 import GameInfo from './gameInfo'
@@ -8,18 +7,6 @@ import Player from './player'
 import TurnState from './turnState'
 
 import { Button, Grid, Paper } from '@mui/material';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    height: '100%'
-  },
-  paper: {
-    // padding: theme.spacing(2),
-    textAlign: 'center',
-    // color: theme.palette.text.secondary,
-  },
-}));
 
 export default function Game() {
 
@@ -94,35 +81,31 @@ export default function Game() {
     }
   }
 
-  const classes = useStyles();
-
-  return (<div className={classes.root}>
+  return (<div>
     <Grid container spacing={1}>
       <Grid item xs={3}>
       </Grid>
       <Grid item xs={6}>
-        <Paper className={classes.paper}>
+        <Paper>
           <Player name={game}></Player>
           <Button onClick={setChoice} variant="contained"
-            color="primary"
-            className={classes.button}>
+            color="primary">
             Choice
           </Button>
           <Button onClick={throwDice} variant="contained"
-            color="primary"
-            className={classes.button}>
+            color="primary">
             Throw dice
           </Button>
         </Paper>
       </Grid>
       <Grid item xs={3}></Grid>
       <Grid item xs={3}>
-        {/* <Paper className={classes.paper}>
+        {/* <Paper>
           <Player>Player 2</Player>
         </Paper> */}
       </Grid>
       <Grid item xs={6}>
-        <Paper className={classes.paper}>
+        <Paper>
           <TurnState></TurnState>
           <GameInfo>
           </GameInfo>
@@ -135,14 +118,14 @@ export default function Game() {
         </Paper>
       </Grid>
       <Grid item xs={3}>
-        {/* <Paper className={classes.paper}>
+        {/* <Paper>
           <Player>Player 3</Player>
         </Paper> */}
       </Grid>
       <Grid item xs={3}>
       </Grid>
       <Grid item xs={6}>
-        <Paper className={classes.paper}>
+        <Paper>
           <Player name={game} inventory={game}></Player>
         </Paper>
       </Grid>
