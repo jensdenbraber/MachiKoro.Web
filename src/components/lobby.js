@@ -42,7 +42,10 @@ export default function Lobby() {
 
         var token = localStorage.getItem('userData')
 
-        var userId = JSON.parse(token)['userId']
+        var userId = "7A13D702-9138-4304-8B02-B8CBE37A2CA6"
+
+        if (token)
+            userId = JSON.parse(token)['userId']
 
         fetch(fetchUrl, {
             method: 'POST',
