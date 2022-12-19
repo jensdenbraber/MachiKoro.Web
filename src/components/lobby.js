@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, ButtonGroup, Grid, TextField } from '@mui/material';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 

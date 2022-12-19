@@ -1,5 +1,3 @@
-import Card from './card'
-
 import { Grid } from '@mui/material';
 
 export default function Landmarks({ landmarks }) {
