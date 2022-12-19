@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { Button, ButtonGroup, Grid, TextField } from '@mui/material';
 import { ArrowRight } from '@mui/icons-material';
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 
 export default function LoginForm() {
   function register() {
@@ -10,7 +10,7 @@ export default function LoginForm() {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [cookies, setCookie] = useCookies(['refreshToken']);
+  // const [cookies, setCookie] = useCookies(['refreshToken']);
 
   function login() {
     console.log("login")

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 import ActionBar from './actionBar/diceRoll'
 import DeckInventory from './deckInventory'
@@ -11,9 +11,9 @@ import { Button, Grid, Paper } from '@mui/material';
 export default function Game() {
 
   const [dice, setDice] = useState([])
-  const [userData, setUserData] = useState([])
-  const [game, setGame] = useState([])
-  const [deckInventory, setDeckInventory] = useState([])
+  // const [userData] = useState([])
+  const [game] = useState([])
+  const [deckInventory] = useState([])
   const [connection, setConnection] = useState([])
 
   useEffect(() => {
@@ -28,8 +28,8 @@ export default function Game() {
       .then(result => {
         console.log('Connected to the game!');
 
-        var user = "Jens"
-        var message = "The message"
+        // var user = "Jens"
+        // var message = "The message"
 
         // connection.invoke("SendMessage", user, message)
 
@@ -44,7 +44,7 @@ export default function Game() {
           setDice(message)
 
 
-          console.log("userData: " + userData)
+          // console.log("userData: " + userData)
 
           // const updatedChat = [...latestChat.current];
           // updatedChat.push(message);
