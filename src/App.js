@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect, useRef, Component } from 'react'
+import React from 'react'
 import Game from './components/game'
 import RegistrationForm from './components/registrationForm'
 import LoginForm from './components/loginForm'

@@ -4,11 +4,11 @@ import { Avatar, CardHeader, CardMedia, CardContent, Typography } from '@mui/mat
 
 export default function CardBase({ cardData }) {
 
-    const [expanded, setExpanded] = React.useState(false);
+    // const [expanded, setExpanded] = React.useState(false);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+    // const handleExpandClick = () => {
+    //     setExpanded(!expanded);
+    // };
 
     return (<Card>
         <CardHeader
