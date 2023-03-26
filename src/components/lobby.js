@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, ButtonGroup, Grid, TextField } from '@mui/material';
+import { Button, ButtonGroup, Grid, Box, TextField } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 
 export default function Lobby() {
@@ -97,7 +98,7 @@ export default function Lobby() {
         if (debug)
             host = "https://localhost:5001"
 
-        var url = "/api/v1/games/" + gameId + "/start"
+        var url = `/api/v1/games/${gameId}/start`
         var fetchUrl = host + url
 
         console.log('fetchUrl: ' + fetchUrl)
@@ -111,6 +112,42 @@ export default function Lobby() {
             }
         })
     }
+
+    const columns = [
+        {
+            field: 'gameName',
+            headerName: 'Game name',
+            width: 150,
+        },
+        {
+            field: 'players',
+            headerName: 'Players',
+            type: 'number',
+            width: 110
+        },
+        {
+            field: 'fullName',
+            headerName: 'Full name',
+            description: 'This column has a value getter and is not sortable.',
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+        },
+    ];
+
+    const rows = [
+        { id: 1, firstName: 'Jon', age: 35 },
+        { id: 2, firstName: 'Cersei', age: 42 },
+        { id: 3, firstName: 'Jaime', age: 45 },
+        { id: 4, firstName: 'Arya', age: 16 },
+        { id: 5, firstName: 'Daenerys', age: null },
+        { id: 6, firstName: null, age: 150 },
+        { id: 7, firstName: 'Ferrara', age: 44 },
+        { id: 8, firstName: 'Rossini', age: 36 },
+        { id: 9, firstName: 'Harvey', age: 65 },
+    ];
+
     return (<form noValidate autoComplete="off">
         <div>
             <Grid container>
@@ -139,6 +176,21 @@ export default function Lobby() {
                         StartGame
                     </Button>
                 </ButtonGroup>
+                <Box sx={{ height: 400, width: '100%' }}>
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        initialState={{
+                            pagination: {
+                                paginationModel: {
+                                    pageSize: 5,
+                                },
+                            },
+                        }}
+                        pageSizeOptions={[5]}
+                        disableRowSelectionOnClick
+                    />
+                </Box>
             </Grid>
         </div>
     </form>);

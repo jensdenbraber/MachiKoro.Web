@@ -12,6 +12,7 @@ export default function Game() {
     const [dice, setDice] = useState([])
     const [userData, setUserData] = useState([])
     const [game, setGame] = useState([])
+    const [gameState, setGameState] = useState([])
     const [deckInventory, setDeckInventory] = useState([])
     const [connection, setConnection] = useState([])
 
