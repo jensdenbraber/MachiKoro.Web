@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, ButtonGroup, Grid, Box, TextField } from '@mui/material';
+import { Button, ButtonGroup, Grid, Box, TextField, Input, FormHelperText } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 
@@ -28,6 +28,10 @@ export default function Lobby() {
 
     const handleChange = (event) => {
         setNumberOfPlayers(event.target.value);
+    };
+
+    const handleGameTypeChange = (event) => {
+        setGameTypes(event.target.value);
     };
 
     const handleClickOpen = () => {
@@ -215,13 +219,11 @@ export default function Lobby() {
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                                Let Google help apps determine location. This means sending anonymous
-                                location data to Google, even when no apps are running.
+                                Select properties form the new game:
                             </DialogContentText>
                             <DialogContent>
-                                <FormControl fullWidth>
                                     <InputLabel id="demo-simple-select-label">Players</InputLabel>
-                                    <Select
+                                    <Select fullWidth
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         value={numberOfPlayers}
@@ -232,18 +234,18 @@ export default function Lobby() {
                                         <MenuItem value={3}>3</MenuItem>
                                         <MenuItem value={4}>4</MenuItem>
                                     </Select>
-                                    <InputLabel id="demo-simple-select-label">Game type</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
+
+                                    <InputLabel id="demo-simple-select-label1">Game type</InputLabel>
+                                    <Select fullWidth
+                                        labelId="demo-simple-select-label1"
+                                        id="demo-simple-select1"
                                         value={gameType}
-                                        label="Players"
-                                        onChange={handleChange}
+                                        label="GameType"
+                                        onChange={handleGameTypeChange}
                                     >
                                         <MenuItem value={"basic"}>Basic</MenuItem>
                                         <MenuItem value={"harbor"}>Harbor</MenuItem>
                                     </Select>
-                                </FormControl>
                             </DialogContent>
                         </DialogContent>
                         <DialogActions>
